@@ -18,9 +18,9 @@
 export default {
   methods: {
     onStart(totalOfBlock) {
-      this.$emit("onStart", { totalOfBlock });
+      this.$emit('onStart', { totalOfBlock })
     },
   },
-};
+}
 </script>
 <style lang=""></style>

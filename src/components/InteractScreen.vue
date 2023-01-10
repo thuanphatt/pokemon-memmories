@@ -5,10 +5,10 @@
   </div>
 </template>
 <script>
-import CardFlip from "./CardPoke.vue";
+import CardFlip from './CardPoke.vue'
 export default {
   components: {
     CardFlip,
   },
-};
+}
 </script>
