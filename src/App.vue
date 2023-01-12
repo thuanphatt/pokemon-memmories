@@ -37,7 +37,6 @@ export default {
   },
   methods: {
     onHandleBeforeStart(config) {
-      console.log('running hanle before start', config)
       this.settings.totalOfBlocks = config.totalOfBlocks
       const fisrtCard = Array.from(
         { length: this.settings.totalOfBlocks / 2 },

@@ -1,5 +1,5 @@
-<template lang="">
-  <div class="card">
+<template>
+  <div class="card" :class="{ disabled: isDisabled }">
     <div
       class="card__inner"
       :class="{ 'is-flipped': isFlipped }"
@@ -22,19 +22,35 @@
 <script>
 export default {
   props: {
+    card: {
+      type: [String, Number, Array, Object],
+    },
     imgBackFaceUrl: {
       type: String,
       required: true,
+    },
+    rules: {
+      type: Array,
     },
   },
   data() {
     return {
       isFlipped: false,
+      isDisabled: false,
     }
   },
   methods: {
     onToggleFlipCard() {
+      if (this.rules.length >= 2) return
+      if (this.isDisabled) return
       this.isFlipped = !this.isFlipped
+      if (this.isFlipped) this.$emit('onFlip', this.card)
+    },
+    onFlipBackCard() {
+      this.isFlipped = false
+    },
+    onEnabledDisabledMode() {
+      this.isDisabled = true
     },
   },
 }
@@ -54,6 +70,9 @@ export default {
   transform-style: preserve-3d;
   cursor: pointer;
   position: relative;
+}
+.card.disabled .card__inner {
+  cursor: default;
 }
 .card__inner.is-flipped {
   transform: rotateY(-180deg);
